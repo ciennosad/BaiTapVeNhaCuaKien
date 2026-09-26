@@ -72,6 +72,14 @@ bài tập 1:
 
 4\. cấu hình nginx có thể chạy 2 website  với 2 domain khác nhau.
 
+- Giả lập Linux OS bằng WSL2 (Ubuntu).
+- Cài đặt Docker và triển khai 5 dịch vụ: `nginx`, `nodered`, `mariadb`, `phpmyadmin`, `cloudflared`.
+- **Domain:** Sử dụng domain thật `web-tiet-kiem.id.vn` (đăng ký miễn phí tại Mắt Bão).
+- **Cloudflare Tunnel:** Đã tạo Tunnel với Token thật, cấu hình Public Hostname trỏ về dịch vụ trong Docker.
+- **Cấu hình Nginx:** Chạy 2 website:
+  - Site 1: `web.web-tiet-kiem.id.vn` (có tích hợp gọi API)
+  - Site 2: `site2.local` (website đơn giản chạy local)
+
 
 
 bài tập 2:
@@ -90,7 +98,17 @@ bài tập 2:
 
 3\. code js vào trang html để gọi đc api trên
 
-
+- Tạo API đơn giản trên Node-RED trả về JSON danh sách sinh viên (`/api/tacke`).
+- Cấu hình Nginx Reverse Proxy để website có thể gọi API từ Node-RED.
+- Viết mã JavaScript (Fetch API) trong file HTML để gọi và hiển thị dữ liệu.
+##Bài làm 
+### Link demo thực tế:
+- Website Site 1: [https://web.web-tiet-kiem.id.vn](https://web.web-tiet-kiem.id.vn)
+- Website Site 2: [http://site2.local/]
+- Mở ubuntu chạy lệnh:  cd ~/Mon_Lap_Trinh_Web
+                        sudo docker compose ps
+- website http://localhost:1880/api/tacke
+{"ok":1,"msg":"thành công","dssv":[{"name":"Cốp","money":123},{"name":"David","money":456},{"name":"kienday","money":999},{"name":"Lan","money":750},{"name":"Dương Đình Kiền","money":673},{"name":"Kiền Nè","money":990}]}
 
 \## CẤU TRÚC THƯ MỤC:
 

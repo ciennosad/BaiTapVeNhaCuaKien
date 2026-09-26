@@ -48,5 +48,16 @@ services:
       - nodered
     restart: unless-stopped
 
+      cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflared
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    environment:
+      # Thay YOUR_TOKEN_BANG_CHU_NHAT_THAY_THE bang token thật nếu có domain
+      - TUNNEL_TOKEN=YOUR_TOKEN_BANG_CHU_NHAT_THAY_THE
+    depends_on:
+      - nginx
+
 volumes:
   mariadb_data:
