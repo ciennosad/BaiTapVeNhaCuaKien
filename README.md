@@ -34,6 +34,22 @@
 
 
 
+\## CẤU TRÚC THƯ MỤC:
+
+
+
+MÔN BẢO MẬT THÔNG TIN/
+
+\-BAO-CAO-DÉ-AES-RSA.md# Báo cáo lý thuyết
+
+\-Code-AES/: + aes\_demo.py@ code cài đặt AES
+
+\-images/
+
+\-aes\_result.png #Ảnh kết quả chạy AES
+
+
+
 \## Môn 2: Lập trình web
 
 \- Docker Compose
@@ -73,6 +89,54 @@ bài tập 2:
 &#x20;  {"ok":1,"msg":"thành công","dssv":\[{"name":"Cốp","money":123},{"name":"David","money":456}]}
 
 3\. code js vào trang html để gọi đc api trên
+
+
+
+\## CẤU TRÚC THƯ MỤC:
+
+Mon\_Lap\_Trinh-Web/
+
+\-docker-compose.yml # File cấu hình Docker
+
+\-nginx/
+
++conf.d/
+
++site1.conf# Cònig Nginx cho site 1
+
++site2.conf# Confif Nginx cho site 2
+
+\-Web/
+
++site 1/
+
+++index.html #web gọi API
+
++site2/
+
+++index.html #web đơn giản
+
+\-images/
+
+\-noderes\_flow.png
+
+\-api\_test.png #Test API 
+
+\-Web\_call\_api.png #web gọi API
+
+
+
+
+
+\### Ảnh minh chứng:
+
+\- \[Flow Node-RED](./Mon\_Lap\_Trinh\_Web/images/nodered\_flow.png)
+
+\- \[Test API trực tiếp](./Mon\_Lap\_Trinh\_Web/images/api\_test.png)
+
+\- \[Website gọi API thành công](./Mon\_Lap\_Trinh\_Web/images/web\_call\_api.png)
+
+
 
 
 

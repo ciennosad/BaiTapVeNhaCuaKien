@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site 1 - Gọi API Node-RED</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        button {
+            display: block;
+            margin: 0 auto 30px;
+            padding: 15px 30px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #5568d3;
+        }
+        #result {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            min-height: 100px;
+        }
+        .student-card {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border-left: 4px solid #667eea;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .student-name {
+            font-weight: bold;
+            color: #333;
+        }
+        .student-money {
+            color: #28a745;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .error {
+            color: #dc3545;
+            background: #f8d7da;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .loading {
+            text-align: center;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Danh Sách Sinh Viên</h1>
+        <button onclick="loadStudents()">🔄 Tải danh sách sinh viên</button>
+        <div id="result">
+            <p style="text-align: center; color: #666;">
+                Click nút trên để tải dữ liệu từ API Node-RED
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function loadStudents() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<div class="loading">Đang tải dữ liệu...</div>';
+
+            // Gọi API qua Nginx reverse proxy
+            fetch('/api/tacke')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('HTTP error! status: ' + response.status);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.ok === 1) {
+                        // Hiển thị thông báo thành công
+                        let html = `<h3 style="color: #28a745; text-align: center;">✅ ${data.msg}</h3>`;
+                        html += '<div style="margin-top: 20px;">';
+                        
+                        // Duyệt qua danh sách sinh viên
+                        data.dssv.forEach((sv, index) => {
+                            html += `
+                                <div class="student-card">
+                                    <span class="student-name">👤 ${index + 1}. ${sv.name}</span>
+                                    <span class="student-money">${sv.money.toLocaleString()} VND</span>
+                                </div>
+                            `;
+                        });
+                        
+                        html += '</div>';
+                        html += `<p style="text-align: center; margin-top: 20px; color: #666;">
+                                    Tổng: ${data.dssv.length} sinh viên
+                                 </p>`;
+                        
+                        resultDiv.innerHTML = html;
+                    } else {
+                        resultDiv.innerHTML = `<div class="error">❌ Lỗi: ${data.msg}</div>`;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    resultDiv.innerHTML = `
+                        <div class="error">
+                            ❌ Lỗi kết nối API: ${error.message}<br>
+                            <small>Kiểm tra xem Docker containers có đang chạy không</small>
+                        </div>
+                    `;
+                });
+        }
+    </script>
+</body>
+</html>
