@@ -8,7 +8,7 @@
 
 \- \*\*MSSV:\*\* K235480106109
 
-\- \*\*Email:\*\* kienduan757@gmail.com
+\- \*\*Email:\*\* kienduon757@gmail.com
 
 
 
@@ -68,7 +68,7 @@ bài tập 2:
 
 &#x20;  https://tnut.cuong.id.vn/api/tacke
 
-&#x20;  trả về json dạng: 
+&#x20;  trả về json dạng:
 
 &#x20;  {"ok":1,"msg":"thành công","dssv":\[{"name":"Cốp","money":123},{"name":"David","money":456}]}
 
