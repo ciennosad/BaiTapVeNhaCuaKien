@@ -1,6 +1,6 @@
 """
 Cài đặt thuật toán AES (Advanced Encryption Standard)
-Sinh viên: [Điền tên bạn]
+Sinh viên: Dương Đình Kiền
 Môn: An toàn và Bảo mật Thông tin
 """
 
